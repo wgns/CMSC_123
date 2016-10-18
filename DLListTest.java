@@ -111,4 +111,20 @@ public class DLListTest extends TestCase{
       // expected!
     }
   }
+
+  public void testDisplayFromHead(){
+    System.out.print("head ==> ");
+    for (Object data : lst) {
+      System.out.print(data + " -> ");
+    }
+    System.out.println("(null)");
+  }
+
+  public void testDisplayFromTail(){
+    System.out.print("tail ==> ");
+    for (DLList.MyNode current = lst.getTail(); current != lst.getHead(); current = current.getPrev()) {
+      System.out.print(current.getData() + " -> ");
+    }
+    System.out.println("" +lst.getHead().getData() + " -> (null)");
+  }
 }
