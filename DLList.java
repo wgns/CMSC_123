@@ -111,6 +111,7 @@ public class DLList<E> implements MyList<E> {
          String c2 = (String) item;
          if (Arrays.equals(c1.toCharArray(), c2.toCharArray())) {
              remove(i);
+             break;
          }
          rem = rem.getNext();
      }
@@ -121,10 +122,7 @@ public class DLList<E> implements MyList<E> {
   }
   
   public E get(int index){
-    checkIfInsideInGet(index);
-     if (index < 0 || index >= size) {
-        throw new IndexOutOfBoundsException();
-     }
+     checkIfInsideInGet(index);
 
      MyNode current;
      if (index < size / 2) {
@@ -143,7 +141,8 @@ public class DLList<E> implements MyList<E> {
   }
   
   public void set(int index, E item){
-    checkIfInsideInGet(index);
+     checkIfInsideInGet(index);
+    
      MyNode current;
      if (index < size / 2) {
         current = head;
