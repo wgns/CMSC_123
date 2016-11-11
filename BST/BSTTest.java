@@ -1,43 +1,103 @@
 import junit.framework.TestCase;
+import org.junit.Test;
 
-/**
- * Created by Sotto and Serato on November 08, 2016.
- */
+
 public class BSTTest extends TestCase {
     BST tree;
-    public void setUp() {
+
+    @Override
+    protected void setUp() throws Exception {
         tree = new BST();
     }
 
+    @Test
     public void testAdd() throws Exception {
-        tree.add("3");
-        assertEquals("\"3\" is in the root.", "3", tree.root.getData());
-        tree.add("2");
-        assertEquals("\"2\" is in the left of the root.", "2", tree.root.getLeft().getData());
-        tree.add("5");
-        assertEquals("\"5\" is i the right of the root.", "5", tree.root.getRight().getData());
-        tree.add("4");
-        assertEquals("\"4\" is in the left of the right of the root.", "4", tree.root.getRight().getLeft().getData());
+        tree.add(15);
+        assertTrue(tree.contains(15));
     }
 
-    public void testToString() throws Exception {
-        tree.add("34");
-        tree.add("3");
-        tree.add("9");
-        tree.add("45");
-        tree.add("18");
-        tree.add("22");
-        assertEquals("", "3 9 18 22 34 45 ", tree.toString(tree.root));
+    @Test
+    public void testAddMany() throws Exception {
+        tree.add(5);
+        tree.add(10);
+        tree.add(30);
+        tree.add(20);
+        tree.add(40);
+        assertEquals(tree.toString(), "5 10 20 30 40 ");
     }
 
-    public void testException() {
+    @Test
+    public void testRemoveNodeWithOneChildAtRight() throws Exception {
+        tree.add(15);
+        tree.add(20);
+        tree.remove(15);
+        assertFalse(tree.contains(15));
+        assertTrue(tree.contains(20));
+    }
+
+    @Test
+    public void testRemoveNodeWithOneChildAtLeft() throws Exception {
+        tree.add(20);
+        tree.add(15);
+        tree.remove(20);
+        assertFalse(tree.contains(20));
+        assertTrue(tree.contains(15));
+    }
+
+    @Test
+    public void testRemoveLeaf() throws Exception {
+        tree.add(15);
+        tree.add(20);
+        tree.add(45);
+        tree.add(2);
+        tree.add(180);
+        tree.add(90);
+        tree.remove(90);
+        assertFalse(tree.contains(90));
+        assertTrue(tree.contains(15));
+        assertTrue(tree.contains(45));
+        assertTrue(tree.contains(180));
+    }
+
+    @Test
+    public void testRemoveNodeWithTwoChildren() throws Exception {
+        tree.add(15);
+        tree.add(20);
+        tree.add(45);
+        tree.add(2);
+        tree.add(180);
+        tree.add(17);
+        tree.add(90);
+        tree.add(31);
+        tree.remove(20);
+        assertEquals("Replaced 20 to 31.", new Integer(31), tree.root.getRight().getData());
+        assertEquals("Tree is ...", "2 15 17 31 45 90 180 ", tree.toString());
+    }
+
+    @Test
+    public void testRemoveNonExistingNumber() throws Exception {
+        tree.add(5);
+        tree.add(10);
+        tree.add(30);
+        tree.add(20);
+        tree.add(40);
         try {
-            tree.add("13");
-            tree.add("7");
-            tree.add("13");
-            fail("Should've thrown an exception");
-        } catch (Exception e) {
+            tree.remove(50);
+            fail("Should've thrown an exception!");
+        }
+        catch (Exception e) {
             // expected!
         }
+    }
+
+    @Test
+    public void testContains() throws Exception {
+        tree.add(5);
+        tree.add(10);
+        tree.add(30);
+        tree.add(20);
+        tree.add(40);
+        assertTrue(tree.contains(5));
+        assertFalse(tree.contains(16));
     }
 }

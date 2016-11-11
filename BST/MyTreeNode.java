@@ -1,20 +1,24 @@
 public class MyTreeNode {
-  private String data;
+  private Integer data;
   private MyTreeNode left;
   private MyTreeNode right;
 
-  public MyTreeNode(String data, MyTreeNode left, MyTreeNode right) {
+  public MyTreeNode(Integer data) {
+      this(data, null, null);
+  }
+
+  public MyTreeNode(Integer data, MyTreeNode left, MyTreeNode right) {
 
     this.data = data;
     this.left = left;
     this.right = right;
   }
 
-  public String getData() {
+  public Integer getData() {
     return data;
   }
 
-  public void setData(String data) {
+  public void setData(Integer data) {
     this.data = data;
   }
 
