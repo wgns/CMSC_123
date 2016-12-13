@@ -40,13 +40,13 @@ A separate class that will handle the simulation must be implemented as well. Th
   edit file1.txt
   edit /root/rcmdulaca/cmsc123/longexam3.doc
   ``` 
-  * if does not exist, create file. If file exists, show the contents of the file and allow the file to be appended with additional texts.
+  	* if does not exist, create file. If file exists, show the contents of the file and allow the file to be appended with additional texts.
 - Deletion of files (rm)
 
   ```
   rm <filename>
   rm file1.txt
-  rm/root/rcmdulaca/cmsc123/longexam3.doc
+  rm /root/rcmdulaca/cmsc123/longexam3.doc
   rm *.doc
   ```
 - Editing of files (append only)
