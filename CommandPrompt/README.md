@@ -61,8 +61,7 @@ A separate class that will handle the simulation must be implemented as well. Th
 	* Transferring of files from one directory to another (mv)
   
   ```  
-  mv file.txt
-  mv /root/rcmdulaca/cmsc123
+  mv file.txt /root/rcmdulaca/cmsc123
   ```
 	* if the directory is non-existent, it simply renames the directory to that new one. But if the directory exists, it moves the directory/file there (the behavior is the same when an absolute/relative path is provided.
 - Copying of files and directories (cp)
